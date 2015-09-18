@@ -1,0 +1,12 @@
+spring:
+ profiles.active: local
+---
+spring:
+ profiles: local
+spring.data.mongodb.host: localhost
+---
+spring:
+ profiles: dev
+spring.data.mongodb.host: mydev
+spring.data.mongodb.port: 8080
+---

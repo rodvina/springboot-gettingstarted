@@ -1,0 +1,44 @@
+buildscript {
+    repositories {
+        mavenCentral()
+    }
+    dependencies {
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:1.2.5.RELEASE")
+    }
+}
+
+apply plugin: 'java'
+apply plugin: 'eclipse'
+apply plugin: 'idea'
+apply plugin: 'spring-boot'
+
+jar {
+    baseName = 'gs-accessing-data-mongodb'
+    version =  '0.1.0'
+}
+
+repositories {
+    mavenCentral()
+}
+
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+
+dependencies {
+    compile("org.springframework.boot:spring-boot-starter-data-mongodb")
+    testCompile("junit:junit")
+}
+
+/**
+ * Task from spring-boot-gradle-plugin, configured for easier development
+ */
+bootRun {
+    /* Lets you pick Spring Boot profile by system properties, e.g. gradle bootRun -Dspring.profiles.active=dev */
+    String activeProfile =  System.properties['spring.profiles.active']
+   	systemProperties = System.properties
+    println "activeProfile:"+activeProfile
+}
+
+task wrapper(type: Wrapper) {
+    gradleVersion = '2.3'
+}
